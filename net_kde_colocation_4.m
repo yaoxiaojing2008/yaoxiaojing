@@ -14,7 +14,7 @@ Ps_whole = get_colocationPs(candidate_col,1,CP_List_2_matrix,Ps_whole,T1, min_co
 toc;
 end
 
-%²úÉú1½×±íÊµÀı
+%äº§ç”Ÿ1é˜¶è¡¨å®ä¾‹
 % CurrentT={[1;[1,3,5]];[2;[2,7,9,15]]...}
 function T1 = gen_table_ins(ET,E)   
    T1 = cell(length(ET),2);
@@ -26,7 +26,7 @@ function T1 = gen_table_ins(ET,E)
    end 
 end
 
-% ÓÉµã¶ÔÊı¾İ´´½¨CP_List_2_matrix
+% ç”±ç‚¹å¯¹æ•°æ®åˆ›å»ºCP_List_2_matrix
 function CP_List_2_matrix = create_CP_List_2_matrix(ET, E,r, PairPointsData)
   ET_L = size(ET,1);
    CP_List_2_matrix = cell(ET_L, ET_L);
@@ -36,27 +36,27 @@ function CP_List_2_matrix = create_CP_List_2_matrix(ET, E,r, PairPointsData)
            after = E(PairPointsData(i,3),2);
            instance_ETPair = [before,after]; %[E(instance_ETPair_memberID,2),E(instance_ETPair_memberID2,2)];
            if ~(issorted(instance_ETPair)) && ~isequal(before,after)
-               %ÓĞ·½ÏòĞÔµÄÁ¬½Ó²»ÄÜÓÃunion£¬·ñÔò»á¹ıÂËµôÏàÍ¬µÄÏî
-                %CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = [CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)};PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)];
-               %ÎŞ·½ÏòĞÔµÄÁ¬½ÓÓÃunion
-                 if isempty(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)})
-                     CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = [CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)};PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)];
-                 else
-                     CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = union(CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)},[PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)],'rows');
-                 end             
+               %æœ‰æ–¹å‘æ€§çš„è¿æ¥ä¸èƒ½ç”¨unionï¼Œå¦åˆ™ä¼šè¿‡æ»¤æ‰ç›¸åŒçš„é¡¹
+               CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = [CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)};PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)];
+               %æ— æ–¹å‘æ€§çš„è¿æ¥ç”¨union
+                %  if isempty(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)})
+                %     CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = [CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)};PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)];
+                % else
+                %      CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)} = union(CP_List_2_matrix{instance_ETPair(2),instance_ETPair(1)},[PairPointsData(i,3),PairPointsData(i,2),PairPointsData(i,4)],'rows');
+                %  end             
            elseif issorted(instance_ETPair) && ~isequal(before,after)
-              % CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = [CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)};PairPointsData(i,2:4)];
-               if isempty(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)})
-                    CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = [CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)};PairPointsData(i,2:4)];
-               else
-                    CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = union(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)},PairPointsData(i,2:4),'rows');
-               end
+               CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = [CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)};PairPointsData(i,2:4)];
+               %if isempty(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)})
+               %     CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = [CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)};PairPointsData(i,2:4)];
+               %else
+               %     CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)} = union(CP_List_2_matrix{instance_ETPair(1),instance_ETPair(2)},PairPointsData(i,2:4),'rows');
+               %end
            end   
        end
    end
 end
 
-% ÀûÓÃ¸ßË¹ºËº¯ÊıÇóÈ¡¶ş½×colocation patterns/Í¬Ê±È¥µôCP_List_2_matrixµÄµã¶Ô·½Ïò£¬²»Í¬·½Ïòµã¶Ô×öÆ½¾ù»¯´¦Àí
+% åˆ©ç”¨é«˜æ–¯æ ¸å‡½æ•°æ±‚å–äºŒé˜¶colocation patterns/åŒæ—¶å»æ‰CP_List_2_matrixçš„ç‚¹å¯¹æ–¹å‘ï¼Œä¸åŒæ–¹å‘ç‚¹å¯¹åšå¹³å‡åŒ–å¤„ç†
 function [candidate_col, CP_List_2_matrix] = kde_2d(CP_List_2_matrix, distance, min_col,T1)
    % cellfun(@(x) sum(exp(-(x(:,3)/distance).^2/sqrt(2*pi))),CP_List_2_matrix,'UniformOutput', false);
    size_CPmatrix = size(CP_List_2_matrix,1);
@@ -85,14 +85,14 @@ function [candidate_col, CP_List_2_matrix] = kde_2d(CP_List_2_matrix, distance, 
    end
 end
 
-%ÇóÈ¡eiÀàĞÍÊµÀıÍ¶Ó°ÔÚCPÉÏµÄw£¨È¨ÖØ£©£¬CPÎªºòÑ¡Ä£Ê½£¬eiÎªÍ¶Ó°ÀàĞÍ£¬CP_matrixÎª¶ÔÓ¦ÔÚCPÉÏµÄ¶ş½×ÊµÀı±í£¬insT_CPÎªCPµÄÊµÀı±í
+%æ±‚å–eiç±»å‹å®ä¾‹æŠ•å½±åœ¨CPä¸Šçš„wï¼ˆæƒé‡ï¼‰ï¼ŒCPä¸ºå€™é€‰æ¨¡å¼ï¼Œeiä¸ºæŠ•å½±ç±»å‹ï¼ŒCP_matrixä¸ºå¯¹åº”åœ¨CPä¸Šçš„äºŒé˜¶å®ä¾‹è¡¨ï¼ŒinsT_CPä¸ºCPçš„å®ä¾‹è¡¨
 function proj_ei_w = Proj(CP,ei,CP_matrix,insT_CP)
-Ps_2 = []; % Ps_2´æ´¢°üº¬eiµÄÀàĞÍ¶Ô
+Ps_2 = []; % Ps_2å­˜å‚¨åŒ…å«eiçš„ç±»å‹å¯¹
 if size(CP,2)<3
     Ps_2 = [Ps_2; CP];
 else
     temp_Ps2 = nchoosek(CP,2);
-    %CPÆÊ·ÖÎª°üº¬eiµÄÀàĞÍ¶Ô£¬´æ´¢ÔÚPs_2ÖĞ
+    %CPå‰–åˆ†ä¸ºåŒ…å«eiçš„ç±»å‹å¯¹ï¼Œå­˜å‚¨åœ¨Ps_2ä¸­
     for i = 1:size(temp_Ps2,1)
         P2 = temp_Ps2(i,:);
         if ismember(ei,P2)
@@ -104,58 +104,58 @@ end
 proj_ei = [];
 
 for i= 1:size(Ps_2,1)
-    %ÕÒµ½µ±Ç°ÀàĞÍ¶ÔÔÚCPÖĞ¶ÔÓ¦µÄË÷ÒıÎ»ÖÃ£¬´æ´¢ÔÚlocÖĞ
+    %æ‰¾åˆ°å½“å‰ç±»å‹å¯¹åœ¨CPä¸­å¯¹åº”çš„ç´¢å¼•ä½ç½®ï¼Œå­˜å‚¨åœ¨locä¸­
     [tf, loc] = ismember(Ps_2(i,:), CP);
-    %ÔÚCP_matrixÖĞÌáÈ¡µ±Ç°ÀàĞÍ¶Ô£¨¼Ç×÷P2£©¶ÔÓ¦µÄÊµÀı¶Ô£¬´æ´¢ÔÚtemp_listÖĞ
+    %åœ¨CP_matrixä¸­æå–å½“å‰ç±»å‹å¯¹ï¼ˆè®°ä½œP2ï¼‰å¯¹åº”çš„å®ä¾‹å¯¹ï¼Œå­˜å‚¨åœ¨temp_listä¸­
     temp_list = CP_matrix{loc(1),loc(2)};
-    flag_ei = 1; % flag_ei±íÃ÷eiÀàĞÍ¶ÔÓ¦temp_listÉÏµÄindexÖµ£¬ÁíÍâÒ»¸öÀàĞÍ¼Ç×÷ej
+    flag_ei = 1; % flag_eiè¡¨æ˜eiç±»å‹å¯¹åº”temp_listä¸Šçš„indexå€¼ï¼Œå¦å¤–ä¸€ä¸ªç±»å‹è®°ä½œej
     if isequal(Ps_2(i,2),ei)
         flag_ei = 2;
     end
     
-    %---ÒÔeiÀàĞÍµÄÊµÀıÎª»ù´¡£¬¼ÆËã¸÷ÊµÀı¶ÔÓ¦µÄÁ¬½Ó±ßµÄÊıÁ¿£¬´æ´¢ÔÚedgeNum_eiÖĞ
-    temp_List_insP = temp_list(:,1:2);  %ÌáÈ¡¶ş½×ÊµÀı±íÖĞP2¶ÔÓ¦µÄinstance pair
-    unique_insP = unique(temp_List_insP,'rows'); %¹ıÂË·ÇÖØ¸´µÄinstance pair£¬´æ´¢ÔÚunique_insPÖĞ
-    unique_ei = unique(temp_list(:,flag_ei));   %¹ıÂË·ÇÖØ¸´µÄÀàĞÍÎªeiµÄÊµÀı
-    unique_ei_cell = num2cell(unique_ei,2);   %½«¹ıÂËºóµÄeiÊµÀıÀ©Õ¹³Écell¸ñÊ½£¬ÎªÁËÔËĞĞ²Ù×÷ÏÂÃæµÄarrayfunºÍcellfunº¯Êı
-    %²éÕÒunique_ei_cellÖĞÃ¿¸öÊµÀıÔÚunique_insP¶ÔÓ¦µÄÀàĞÍÎªeiÁĞµÄÊµÀıÎ»ÖÃ£¬±ê¼ÇÎª1,·ñÔòÎª0
+    %---ä»¥eiç±»å‹çš„å®ä¾‹ä¸ºåŸºç¡€ï¼Œè®¡ç®—å„å®ä¾‹å¯¹åº”çš„è¿æ¥è¾¹çš„æ•°é‡ï¼Œå­˜å‚¨åœ¨edgeNum_eiä¸­
+    temp_List_insP = temp_list(:,1:2);  %æå–äºŒé˜¶å®ä¾‹è¡¨ä¸­P2å¯¹åº”çš„instance pair
+    unique_insP = unique(temp_List_insP,'rows'); %è¿‡æ»¤éé‡å¤çš„instance pairï¼Œå­˜å‚¨åœ¨unique_insPä¸­
+    unique_ei = unique(temp_list(:,flag_ei));   %è¿‡æ»¤éé‡å¤çš„ç±»å‹ä¸ºeiçš„å®ä¾‹
+    unique_ei_cell = num2cell(unique_ei,2);   %å°†è¿‡æ»¤åçš„eiå®ä¾‹æ‰©å±•æˆcellæ ¼å¼ï¼Œä¸ºäº†è¿è¡Œæ“ä½œä¸‹é¢çš„arrayfunå’Œcellfunå‡½æ•°
+    %æŸ¥æ‰¾unique_ei_cellä¸­æ¯ä¸ªå®ä¾‹åœ¨unique_insPå¯¹åº”çš„ç±»å‹ä¸ºeiåˆ—çš„å®ä¾‹ä½ç½®ï¼Œæ ‡è®°ä¸º1,å¦åˆ™ä¸º0
     independent_logical = arrayfun(@(x) ismember(unique_insP(:,flag_ei),x{:},'rows'), unique_ei_cell, 'UniformOutput', false);  
-    %ÇóµÃ¸÷¸öÊµÀı¶ÔÓ¦µÄÁ¬½Ó±ßµÄÊıÁ¿£¬×¢ÒâÒª*2£¬±íÃ÷±ßÊÇÓĞ·½ÏòµÄ
-    independent_edgeNum = cellfun(@(x) sum(x),independent_logical);
-    %½«¸÷¸öÀàĞÍÎªeiµÄÊµÀıºÍÓëÆäÓĞÁ¬½Ó¹ØÏµµÄÀàĞÍÎªejµÄÊµÀıµÄ±ßºÏ²¢£¬´æ´¢ÔÚedgeNum_eiÖĞ
+    %æ±‚å¾—å„ä¸ªå®ä¾‹å¯¹åº”çš„è¿æ¥è¾¹çš„æ•°é‡ï¼Œæ³¨æ„è¦*2ï¼Œè¡¨æ˜è¾¹æ˜¯æœ‰æ–¹å‘çš„
+    independent_edgeNum = cellfun(@(x) sum(x)*2,independent_logical);
+    %å°†å„ä¸ªç±»å‹ä¸ºeiçš„å®ä¾‹å’Œä¸å…¶æœ‰è¿æ¥å…³ç³»çš„ç±»å‹ä¸ºejçš„å®ä¾‹çš„è¾¹åˆå¹¶ï¼Œå­˜å‚¨åœ¨edgeNum_eiä¸­
     edgeNum_ei = [unique_ei,independent_edgeNum];
     
-    %---½«temp_list2Í¶Ó°ÔÚtemp_listµÄÇ°Á½ÔªÉÏ£¬¼ÇÂ¼temp_list2ÖĞÃ¿¸öÊµÀı¶Ô³öÏÖÔÚtemp_listÉÏµÄindex,²¢µÃµ½kernalÖµ£¬Á¬½ÓÔÚÍ¶Ó°ÊµÀı¶ÔµÄºóÃæ£¬×÷ÎªµÚÈıÁĞ¡£
-    %ÔÚinsT_CP¸ß½×ÊµÀı±íÖĞÌáÈ¡ÀàĞÍ¶ÔP2¶ÔÓ¦µÄÊµÀı¶Ô£¬´æ´¢ÔÚtemp_list2ÖĞ
+    %---å°†temp_list2æŠ•å½±åœ¨temp_listçš„å‰ä¸¤å…ƒä¸Šï¼Œè®°å½•temp_list2ä¸­æ¯ä¸ªå®ä¾‹å¯¹å‡ºç°åœ¨temp_listä¸Šçš„index,å¹¶å¾—åˆ°kernalå€¼ï¼Œè¿æ¥åœ¨æŠ•å½±å®ä¾‹å¯¹çš„åé¢ï¼Œä½œä¸ºç¬¬ä¸‰åˆ—ã€‚
+    %åœ¨insT_CPé«˜é˜¶å®ä¾‹è¡¨ä¸­æå–ç±»å‹å¯¹P2å¯¹åº”çš„å®ä¾‹å¯¹ï¼Œå­˜å‚¨åœ¨temp_list2ä¸­
     temp_list2 = unique(insT_CP(:,loc),'rows');
-    temp_list2_cell = num2cell(temp_list2,2);  %½«temp_list2À©Õ¹³Écell¸ñÊ½£¬²ÎÊı2±íÊ¾ÒÔĞĞÎªµ¥Î»À©Õ¹³Écell£¬±ÈÈçA=[1,2;2,3],num2cell(A,2)= {[1,2];[2,3]}
-    %²éÕÒtemp_list2_cellÖĞÃ¿¸öÊµÀıÔÚtemp_List¶ÔÓ¦µÄÊµÀı¶ÔµÄÎ»ÖÃ£¬±ê¼ÇÎª1,·ñÔòÎª0
+    temp_list2_cell = num2cell(temp_list2,2);  %å°†temp_list2æ‰©å±•æˆcellæ ¼å¼ï¼Œå‚æ•°2è¡¨ç¤ºä»¥è¡Œä¸ºå•ä½æ‰©å±•æˆcellï¼Œæ¯”å¦‚A=[1,2;2,3],num2cell(A,2)= {[1,2];[2,3]}
+    %æŸ¥æ‰¾temp_list2_cellä¸­æ¯ä¸ªå®ä¾‹åœ¨temp_Listå¯¹åº”çš„å®ä¾‹å¯¹çš„ä½ç½®ï¼Œæ ‡è®°ä¸º1,å¦åˆ™ä¸º0
     independent_logical = arrayfun(@(x) ismember(temp_List_insP,x{:},'rows'), temp_list2_cell, 'UniformOutput', false);
-    %½«ÇóµÃ¸÷¸ö·ÇÖØ¸´Í¶Ó°ÊµÀı¶ÔµÄkernalÖµÏà¼Ó£¬ÒòÎª´æÔÚ·½ÏòĞÔ£¬ËùÒÔ±ØĞëÒª¾­¹ıÕâÒ»²½
+    %å°†æ±‚å¾—å„ä¸ªéé‡å¤æŠ•å½±å®ä¾‹å¯¹çš„kernalå€¼ç›¸åŠ ï¼Œå› ä¸ºå­˜åœ¨æ–¹å‘æ€§ï¼Œæ‰€ä»¥å¿…é¡»è¦ç»è¿‡è¿™ä¸€æ­¥
     independent_kernal = cellfun(@(x) sum(x.*temp_list(:,size(temp_list,2))),independent_logical);
-    %½«ÊµÀı¶ÔºÍËûÃÇµÄkernalºÍ½øĞĞÁ¬½ÓºÏ²¢£¬´æ´¢ÔÚtemp_list2_kernalÖĞ
+    %å°†å®ä¾‹å¯¹å’Œä»–ä»¬çš„kernalå’Œè¿›è¡Œè¿æ¥åˆå¹¶ï¼Œå­˜å‚¨åœ¨temp_list2_kernalä¸­
     temp_list2_kernal = [temp_list2,independent_kernal];
     
-    %---ÒÔeiÀàĞÍµÄinstanceÎª»ù´¡£¬¼ÆËã¸÷instance¶ÔÓ¦µÄkernalÖµÖ®ºÍ£¬¼Ç×÷ei_K
-    %´ÓÍ¶Ó°ºóµÄÊµÀı¶ÔÖĞÌáÈ¡ÀàĞÍÎªeiµÄÊµÀıÍ¶Ó°£¬¼Ç×÷temp_list2_ei
+    %---ä»¥eiç±»å‹çš„instanceä¸ºåŸºç¡€ï¼Œè®¡ç®—å„instanceå¯¹åº”çš„kernalå€¼ä¹‹å’Œï¼Œè®°ä½œei_K
+    %ä»æŠ•å½±åçš„å®ä¾‹å¯¹ä¸­æå–ç±»å‹ä¸ºeiçš„å®ä¾‹æŠ•å½±ï¼Œè®°ä½œtemp_list2_ei
     temp_list2_ei = temp_list2_kernal(:,flag_ei);
-    %ÔÚtemp_list2_eiÖĞÑ°ÕÒ¶ş½×ÊµÀı±íÖĞeiÀàĞÍ¶ÔÓ¦µÄÊµÀıÔÚÆäÉÏµÄË÷ÒıÎ»ÖÃ£¬±ê¼ÇÎª1£¬·ñÔòÎª0
+    %åœ¨temp_list2_eiä¸­å¯»æ‰¾äºŒé˜¶å®ä¾‹è¡¨ä¸­eiç±»å‹å¯¹åº”çš„å®ä¾‹åœ¨å…¶ä¸Šçš„ç´¢å¼•ä½ç½®ï¼Œæ ‡è®°ä¸º1ï¼Œå¦åˆ™ä¸º0
     independent_logical = arrayfun(@(x) ismember(temp_list2_ei,x{:},'rows'), unique_ei_cell, 'UniformOutput', false);
-    %Ã¿¸öeiÀàĞÍÊµÀı¶ÔÓ¦µÄkernal×ö¼ÓºÍ´¦Àí
+    %æ¯ä¸ªeiç±»å‹å®ä¾‹å¯¹åº”çš„kernalåšåŠ å’Œå¤„ç†
     independent_ei_kernal = cellfun(@(x) sum(x.*temp_list2_kernal(:,size(temp_list2_kernal,2))),independent_logical);
-    %Á¬½ÓedgeNum_eiºÍÍ¶Ó°kernalÖ®ºÍ
+    %è¿æ¥edgeNum_eiå’ŒæŠ•å½±kernalä¹‹å’Œ
     ei_K = [edgeNum_ei,independent_ei_kernal];
     
-    %proj_ei´æ´¢ÁËÈıÔª×éĞòÁĞ£¬·Ö±ğÎª£ºeiÀàĞÍÒªËØ£¬eiÊµÀıÍ¶Ó°ÔÚ¶ş½×ÊµÀı±íµÄ¿ÉÁ¬½Ó±ßµÄ¸öÊı£¬eiÊµÀıÍ¶Ó°ÔÚ¸ß½×ÊµÀı±íµÄ¿ÉÁ¬½ÓÊµÀı±ßµÄkernalÖµÖ®ºÍ
+    %proj_eiå­˜å‚¨äº†ä¸‰å…ƒç»„åºåˆ—ï¼Œåˆ†åˆ«ä¸ºï¼šeiç±»å‹è¦ç´ ï¼Œeiå®ä¾‹æŠ•å½±åœ¨äºŒé˜¶å®ä¾‹è¡¨çš„å¯è¿æ¥è¾¹çš„ä¸ªæ•°ï¼Œeiå®ä¾‹æŠ•å½±åœ¨é«˜é˜¶å®ä¾‹è¡¨çš„å¯è¿æ¥å®ä¾‹è¾¹çš„kernalå€¼ä¹‹å’Œ
     proj_ei = [proj_ei; ei_K];   
 end
 
-%---ÒÔproj_eiµÚÒ»ÁĞ£¨ÀàĞÍÎªeiµÄÊµÀı£©Îª»ù×¼£¬ÓÃµÚÈıÏî³ıÒÔµÚ¶şÏî£¬¸²¸ÇÔ­proj_ei(µã³ı)
+%---ä»¥proj_eiç¬¬ä¸€åˆ—ï¼ˆç±»å‹ä¸ºeiçš„å®ä¾‹ï¼‰ä¸ºåŸºå‡†ï¼Œç”¨ç¬¬ä¸‰é¡¹é™¤ä»¥ç¬¬äºŒé¡¹ï¼Œè¦†ç›–åŸproj_ei(ç‚¹é™¤)
 proj_ei = [proj_ei(:,1),proj_ei(:,3)./proj_ei(:,2)];
 
-%---ÌáÈ¡³öÏàÍ¬instance¶ÔÓ¦µÄÈ¨ÖØ×îĞ¡Öµ£¨w£©£¬µÃµ½proj_ei_w
+%---æå–å‡ºç›¸åŒinstanceå¯¹åº”çš„æƒé‡æœ€å°å€¼ï¼ˆwï¼‰ï¼Œå¾—åˆ°proj_ei_w
 unique_instace_ei = unique(proj_ei(:,1),'rows');
-unique_instace_ei_cell = num2cell(unique_instace_ei,2); %ÌáÈ¡¿ÉÁ¬½Ó±ßµÄ·ÇÖØ¸´Ïî
+unique_instace_ei_cell = num2cell(unique_instace_ei,2); %æå–å¯è¿æ¥è¾¹çš„éé‡å¤é¡¹
 independent_logical = arrayfun(@(x) find(ismember(proj_ei(:,1),x{:},'rows')), unique_instace_ei_cell, 'UniformOutput', false);
 independent_ei_w = cellfun(@(x) min(proj_ei(x,size(proj_ei,2))),independent_logical);
 
@@ -163,7 +163,7 @@ proj_ei_w = [unique_instace_ei,independent_ei_w];
 
 end
 
-%ÀûÓÃ¸ßË¹ºËº¯ÊıÇóËãCP_rowÊÇ·ñÎªcolocation pattern
+%åˆ©ç”¨é«˜æ–¯æ ¸å‡½æ•°æ±‚ç®—CP_rowæ˜¯å¦ä¸ºcolocation pattern
 function Ps_bool = kde_Nd(Ins_list,CP_row, CP_List_2_matrix,T1, min_col)
       % Dv_mean_coll = zeros(1,size(Ins_list,1));
        Ps_bool =0;
@@ -218,11 +218,11 @@ function Ps_whole = get_colocationPs(CP_List_clear,index,CP_List_2_matrix,Ps_who
   end
 end
 
-% ´´½¨InstreeÊ÷£¬µÃµ½Ins_list
+% åˆ›å»ºInstreeæ ‘ï¼Œå¾—åˆ°Ins_list
 % CP_row= 'ABC';
-% CP_List_2_matrixÊÇÒ»¸ö¶ÔÓ¦ÓÚABCĞĞÁĞµÄ3*3µÄcells£¬Ã¿¸öcellÀïÃæ£¬ÈçCP_List_2_matrix{1,2}£¬¶ÔÓ¦ÎªÀàĞÍAºÍÀàĞÍBµÄ¾àÀëĞ¡ÓÚÄ³¸öãĞÖµ
-% µÄ¶ş½×ÊµÀı¶Ô£¬²¢ÇÒ±£´æÓĞËûÃÇÖ®¼äµÄ¾àÀë
-% ¼´£¬CP_List_2_matrix{1,2} = [1,4,48934;1,8,4833;7,2,83940;...]
+% CP_List_2_matrixæ˜¯ä¸€ä¸ªå¯¹åº”äºABCè¡Œåˆ—çš„3*3çš„cellsï¼Œæ¯ä¸ªcellé‡Œé¢ï¼Œå¦‚CP_List_2_matrix{1,2}ï¼Œå¯¹åº”ä¸ºç±»å‹Aå’Œç±»å‹Bçš„è·ç¦»å°äºæŸä¸ªé˜ˆå€¼
+% çš„äºŒé˜¶å®ä¾‹å¯¹ï¼Œå¹¶ä¸”ä¿å­˜æœ‰ä»–ä»¬ä¹‹é—´çš„è·ç¦»
+% å³ï¼ŒCP_List_2_matrix{1,2} = [1,4,48934;1,8,4833;7,2,83940;...]
 function Ins_list = create_Ins_Tree( CP_row, CP_List_2_matrix)
 insTree = tree('root');
 i=1;
@@ -242,7 +242,7 @@ while i<size(CP_row,2)
        end
     else
         dt = insTree.depthtree;
-        currLevelIDs = find(dt == i); % »ñÈ¡µ±Ç°i²ã¼¶µÄËùÓĞÔªËØ
+        currLevelIDs = find(dt == i); % è·å–å½“å‰iå±‚çº§çš„æ‰€æœ‰å…ƒç´ 
         currLevelItems = getTreeContent(insTree, currLevelIDs);
         CP_List_1 = CP_List_2_matrix{i,i+1}(:,1); 
         loc = cell(size(currLevelItems,2),1);
@@ -257,8 +257,8 @@ while i<size(CP_row,2)
         end
 %         [tf,loc] = ismember(currLevelItems,CP_List_1); 
 %         parentItems_i = currLevelIDs(find(tf));
-%         loc(loc==0)=[]; % È¥µô0ÔªËØ
-%         ConnectItems_i_1 = CP_List_2_matrix{i,i+1}(loc,2); % »ñÈ¡ÏàÍ¬
+%         loc(loc==0)=[]; % å»æ‰0å…ƒç´ 
+%         ConnectItems_i_1 = CP_List_2_matrix{i,i+1}(loc,2); % è·å–ç›¸åŒ
         for j = 1:size(parentItems_i,2)
             for k = 1:size(ConnectItems_i_1{j},1)
                 mark = i-1;
@@ -296,19 +296,19 @@ for k = 1:size(Ins_list_index,2)
 end
 end
 
-% ¸ù¾İÒÑ¾­½øĞĞ¹ıÇåÏ´µÄÁÙÊ±ÊµÀıÒªËØ£¬¼ÆËãÍÅ¹ØÏµÊµÀı
+% æ ¹æ®å·²ç»è¿›è¡Œè¿‡æ¸…æ´—çš„ä¸´æ—¶å®ä¾‹è¦ç´ ï¼Œè®¡ç®—å›¢å…³ç³»å®ä¾‹
 function [tree] = get_pattern_ins(culc_temp,befor_index,after_index, curr_R,tree)
   if(after_index<=size(curr_R,1))
       items = culc_temp{befor_index, after_index};
       if(befor_index ==1)
-        tree=[tree,items(:,1:2)];% ÈôÎª³õÊ¼µÄÊ÷£¬½«culc_temp{1,2}¸³Öµ¸øtree
+        tree=[tree,items(:,1:2)];% è‹¥ä¸ºåˆå§‹çš„æ ‘ï¼Œå°†culc_temp{1,2}èµ‹å€¼ç»™tree
         tree = get_pattern_ins(culc_temp,after_index,after_index+1,curr_R, tree);
       else
           if(~isempty(tree))
             %items_2 = culc_temp{after_index,after_index+1};
             tree_temp=[];
             for i=1:size(tree,1)
-               union_item = items(items(:,1)==tree(i,after_index-1),:);%ĞÂµÄclac_itemÓëtreeµÄ×îÄ©Î»ÁĞµÄÒªËØ½øĞĞÁ¬½Ó¼ÆËã£¬
+               union_item = items(items(:,1)==tree(i,after_index-1),:);%æ–°çš„clac_itemä¸treeçš„æœ€æœ«ä½åˆ—çš„è¦ç´ è¿›è¡Œè¿æ¥è®¡ç®—ï¼Œ
                if(~isempty(union_item))
                    for k=1:size(union_item,1)
                        flag =1;
@@ -323,7 +323,7 @@ function [tree] = get_pattern_ins(culc_temp,befor_index,after_index, curr_R,tree
                            end
                        end
                        if(flag)
-                          tree_temp =[tree_temp;[tree(i,1:befor_index),union_item(k,2)]];%maxlen]];% Ê÷µÄ×îºóÒ»ÁĞ´æ´¢ÍÅ¹ØÏµÊµÀıµÄ×î³¤±ß
+                          tree_temp =[tree_temp;[tree(i,1:befor_index),union_item(k,2)]];%maxlen]];% æ ‘çš„æœ€åä¸€åˆ—å­˜å‚¨å›¢å…³ç³»å®ä¾‹çš„æœ€é•¿è¾¹
                        end
                    end 
                end
@@ -334,7 +334,7 @@ function [tree] = get_pattern_ins(culc_temp,befor_index,after_index, curr_R,tree
   end
 end
 
-% ÅĞ¶ÏitemÊÇ·ñÔÚtargetcells´æÔÚ°üº¬¹ØÏµµÄÒªËØ
+% åˆ¤æ–­itemæ˜¯å¦åœ¨targetcellså­˜åœ¨åŒ…å«å…³ç³»çš„è¦ç´ 
 function result = ifCellMember2(item, targetcells)
    result=0; 
    for i=1:size(targetcells,2)
@@ -345,7 +345,7 @@ function result = ifCellMember2(item, targetcells)
    end
 end
 
-%´ÓtreeCaseÖĞÅúÁ¿»ñÈ¡indexsµÄnodeÄÚÈİ
+%ä»treeCaseä¸­æ‰¹é‡è·å–indexsçš„nodeå†…å®¹
 function items = getTreeContent(treeCase, indexs)
      items = [];
      for i=indexs
